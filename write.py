@@ -1,23 +1,23 @@
 from os import path, makedirs
 
-# Create the directory if it doesn't already exist;
+# Create the test_files directory if it doesn't already exist;
 
-directory = r'C:\Users\slushy\Desktop\Python\copied_files'
+directory = 'C:\\Users\\slushy\\Desktop\\Python\\write.py\\test_files\\'
 
 if not path.exists(directory):
     makedirs(directory)
 
-# Create the original file if it doesn't already exist;
+# Create the original text file if it doesn't already exist;
 
 filename = 'original.txt'
 
-filepath = 'C:\\Users\\slushy\\Desktop\\Python\\'
+filepath = 'C:\\Users\\slushy\\Desktop\\Python\\write.py\\test_files\\'
 
-full_filepath = 'C:\\Users\\slushy\\Desktop\\Python\\original.txt'
+full_filepath = 'C:\\Users\\slushy\\Desktop\\Python\\write.py\\test_files\\original.txt'
 
 text = 'Copy this text from original.txt to 10 other text files.'
 
-if filename not in full_filepath:
+if filename not in filepath:
     file = open(full_filepath, 'w')
 
     file.write(text)
