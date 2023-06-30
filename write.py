@@ -3,7 +3,9 @@
 from os import path, makedirs
 
 # This is the directory where we will be storing our original file and its
-# copies, we assign it to a descriptive variable for efficiency;
+# copies, we assign it to a descriptive variable for efficiency; 
+# the double backslashes are used to insert literal backslashes since this script was 
+# written for Windows;
 directory = 'C:\\Users\\slushy\\Desktop\\Python\\write.py\\test_files\\'
 
 # Checks the filepath to see if the directory exists; if it does NOT exist...
