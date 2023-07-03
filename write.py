@@ -96,3 +96,30 @@ for i in range(1, 11):
         print(f'copy_file{i} already exists in {directory}.')
 
 print()
+
+################### ORGANIZE AND CLEAN UP
+
+# os.walk() allows us, in this case, to loop through the contents of a folder
+# at a specified path;
+from os import walk
+
+# shutil.move() is used to move/rename files, and shutil.rmtree() is used to
+# delete entire directories and their contents;
+from shutil import move, rmtree
+
+# We defined the filepath to test_files\ near the top and assigned it to the
+# variable, directory; now we just have to loop through every file in that
+# folder and create a new directory inside of test_files\ with the same name
+# as the file, e.g. 
+for root, dirs, files in walk(directory):
+    for file in files:
+        
+        letters = len(file)
+        
+        new_fldr = ''.join(f'{directory}' + f'{file}')
+        #print(fldr_name)
+
+        # Create a subdirectory of the current directory with the same name as the
+        # file in this iteration;
+        makedirs(new_fldr)
+        print(f'{new_fldr} created successfully.')
