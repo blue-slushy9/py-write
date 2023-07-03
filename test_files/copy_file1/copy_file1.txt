@@ -1,1 +1,0 @@
-Copy this text from original.txt to 10 other text files.

@@ -2,6 +2,8 @@
 # and the makedirs() method is used to create directories;
 from os import path, makedirs
 
+################ CREATE ORIGINAL FILE, WRITE TO IT, CREATE COPIES
+
 # This is the directory where we will be storing our original file and its
 # copies, we assign it to a descriptive variable for efficiency; 
 # the double backslashes are used to insert literal backslashes since this script was 
@@ -105,21 +107,46 @@ from os import walk
 
 # shutil.move() is used to move/rename files, and shutil.rmtree() is used to
 # delete entire directories and their contents;
-from shutil import move, rmtree
+from shutil import move
 
 # We defined the filepath to test_files\ near the top and assigned it to the
-# variable, directory; now we just have to loop through every file in that
-# folder and create a new directory inside of test_files\ with the same name
-# as the file, e.g. 
+# variable, directory; now we use the 'root, dirs, files in walk' to enumerate
+# our entire directory, even though we will only use the files; 
 for root, dirs, files in walk(directory):
+    
+    # Now that we have enumerated our files, we can proceed to loop through
+    # them one by one;
     for file in files:
         
-        letters = len(file)
+        # Define the substring as '.txt' because that's what we want to remove
+        # from the filename in order to create a directory with the same name;
+        substr = '.txt'
         
-        new_fldr = ''.join(f'{directory}' + f'{file}')
-        #print(fldr_name)
+        # We use the replace() function to replace the substring we defined
+        # above with nothing (''), effectively deleting it;
+        edit_file = file.replace(substr, '')
 
-        # Create a subdirectory of the current directory with the same name as the
-        # file in this iteration;
-        makedirs(new_fldr)
-        print(f'{new_fldr} created successfully.')
+        # We join the filepath of the directory with the name of the directory
+        # in order to define its full filepath;
+        new_fldr = ''.join(f'{directory}' + f'{edit_file}\\')
+
+        # This is the full SOURCE filepath of the text file;
+        filepath = (directory+file)
+
+        # We want to check whether the new folder(s) we want to create already
+        # exist;
+        if not path.exists(new_fldr):
+
+            # Create a subdirectory of the current directory with the same name as the
+            # file in this iteration;
+            makedirs(new_fldr)
+            print(f'{new_fldr} created successfully.')
+
+        # This is the full DESTINATION filepath of the text file;
+        new_filepath = (new_fldr+file)
+
+        # Check whether the file already exists at destination path, and if it
+        # doesn't then we move it there;
+        if not path.exists(new_filepath):
+            move(filepath, new_filepath)
+            print(f'{file} moved successfully to the folder {new_fldr}.')
