@@ -31,16 +31,15 @@ text = 'Copy this text from original.txt to 10 other text files.'
 if not path.exists(orig_full_path):
     
     # then create (open) original.txt at the filepath in write mode;
-    file = open(orig_full_path, 'w')
+    # we use 'with open as' so f gets closed automatically at end of block;
+    with open(orig_full_path, 'w') as f:
 
-    # Then write the text (string) to it;
-    file.write(text)
+        # Then write the text (string) to it;
+        f.write(text)
 
-    file.close()
-
-    print()
-    print(f'{orig_file} was created and written successfully.')
-    print()
+        print()
+        print(f'{orig_file} was created and written successfully.')
+        print()
 
 # Else if original.txt already exists at that filepath...
 elif path.exists(orig_full_path):
@@ -48,7 +47,6 @@ elif path.exists(orig_full_path):
     # simply print out this message and don't do anything else;
     print(f'File {orig_file} already exists in the directory {directory}.')
     print()
-
 
 else:
     print()
